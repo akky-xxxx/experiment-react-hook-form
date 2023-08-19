@@ -1,3 +1,4 @@
+import { validators } from "./modules/validators"
 import { ErrorMessage } from "../../atoms/ErrorMessage"
 import { Text } from "../../atoms/Text"
 
@@ -22,6 +23,7 @@ export const PasswordView: FC<Props> = (props) => {
           name="currentPassword"
           register={register}
           type="password"
+          validate={validators.validateCurrentPassword}
         />
         <ErrorMessage errorMessage={errors.currentPassword?.message} />
       </div>
@@ -32,6 +34,7 @@ export const PasswordView: FC<Props> = (props) => {
           name="newPassword"
           register={register}
           type="password"
+          validate={validators.validateNewPassword}
         />
         <ErrorMessage errorMessage={errors.newPassword?.message} />
       </div>
@@ -42,6 +45,7 @@ export const PasswordView: FC<Props> = (props) => {
           name="confirmationPassword"
           register={register}
           type="password"
+          validate={validators.validateConfirmationPassword}
         />
         <ErrorMessage errorMessage={errors.confirmationPassword?.message} />
       </div>
