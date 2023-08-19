@@ -1,7 +1,4 @@
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-
-import { passwordChangeSchema } from "../../../../../shared/schemas/passwordChangeSchema"
+import { useResolvedForm } from "../../../../../shared/utils/useResolvedForm"
 
 import type { PasswordView } from "../../View"
 import type { Password } from "../../types/Password"
@@ -16,7 +13,7 @@ export const usePasswordTemplate = (): UsePasswordTemplateReturn => {
     handleSubmit,
     setError,
     formState: { errors },
-  } = useForm<Password>({ resolver: zodResolver(passwordChangeSchema) })
+  } = useResolvedForm<Password>()
 
   const handleSubmitMain: SubmitHandler<Password> = (data) => {
     const { confirmationPassword, currentPassword, newPassword } = data

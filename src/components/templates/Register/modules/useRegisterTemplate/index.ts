@@ -1,11 +1,9 @@
-import { zodResolver } from "@hookform/resolvers/zod"
 import { getDaysInMonth } from "date-fns"
 import { useMemo } from "react"
-import { useForm } from "react-hook-form"
 
 import { subscribeMonth } from "./modules/subscribeMonth"
 import { subscribeYear } from "./modules/subscribeYear"
-import { registerSchema } from "../../../../../shared/schemas/registerSchema"
+import { useResolvedForm } from "../../../../../shared/utils/useResolvedForm"
 
 import type { SubscribeArguments } from "../../../../../shared/types/Subscribe"
 import type { RegisterView } from "../../View"
@@ -29,7 +27,7 @@ export const useRegisterTemplate = (): UseRegisterTemplateReturn => {
     watch,
     setValue,
     control,
-  } = useForm<Register>({ resolver: zodResolver(registerSchema) })
+  } = useResolvedForm<Register>()
   const [yearValue, monthValue] = getValues(["birthday.year", "birthday.month"])
   const isMonthEnable = Boolean(yearValue)
   const isDateEnable = Boolean(monthValue)
