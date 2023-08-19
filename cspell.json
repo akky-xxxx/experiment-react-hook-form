@@ -1,0 +1,29 @@
+{
+  "version": "0.1",
+  "language": "en",
+  "dictionaries": [
+    "en",
+    "typescript",
+    "html",
+    "css",
+    "packages",
+    "web",
+    "color",
+    "domain"
+  ],
+  "dictionaryDefinitions": [
+    {
+      "name": "packages",
+      "path": "./config/cspell/packages.txt"
+    },
+    {
+      "name": "web",
+      "path": "./config/cspell/web.txt"
+    },
+    {
+      "name": "color",
+      "path": "./config/cspell/color.txt"
+    }
+  ],
+  "ignorePaths": ["node_modules/**", "**/libs/**", "**/coverage/**"]
+}

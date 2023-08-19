@@ -1,0 +1,5 @@
+.eslintcache
+.next
+coverage
+node_modules
+public
