@@ -1,3 +1,5 @@
+import Link from "next/link"
+
 import type { Metadata } from "next"
 import type { FC, ReactNode } from "react"
 
@@ -11,7 +13,19 @@ const RootLayout: FC<{ children: ReactNode }> = (props) => {
 
   return (
     <html lang="ja">
-      <body>{children}</body>
+      <body>
+        <nav>
+          <ul style={{ display: "flex", flexWrap: "wrap", gap: 20 }}>
+            <li>
+              <Link href="/">Top</Link>
+            </li>
+            <li>
+              <Link href="/register">Register</Link>
+            </li>
+          </ul>
+        </nav>
+        <div>{children}</div>
+      </body>
     </html>
   )
 }
