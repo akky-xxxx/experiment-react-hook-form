@@ -3,17 +3,17 @@ import { z } from "zod"
 import { passwordSchema } from "../passwordSchema"
 
 import type { Register } from "../../../components/templates/Register/types/Register"
-import type { ZodNumber, ZodObject, ZodString } from "zod"
+import type { ZodObject, ZodString } from "zod"
 
 type NameSchemaType = Record<keyof Register["name"], ZodString>
-type BirthdaySchemaType = Record<keyof Register["birthday"], ZodNumber>
+type BirthdaySchemaType = Record<keyof Register["birthday"], ZodString>
 
 export const registerSchema = z.object({
   /* eslint-disable @typescript-eslint/no-magic-numbers */
   birthday: z.object({
-    date: z.number().min(1).max(2),
-    month: z.number().min(1).max(2),
-    year: z.number().min(4).max(4),
+    date: z.string().min(1).max(2),
+    month: z.string().min(1).max(2),
+    year: z.string().min(4).max(4),
   } satisfies BirthdaySchemaType),
   id: z.string().min(8, "Password must contain at least 8 characters"),
   name: z.object({
