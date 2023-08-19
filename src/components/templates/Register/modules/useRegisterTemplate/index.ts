@@ -17,8 +17,15 @@ const handleSubmitMain: SubmitHandler<Register> = (data) => {
 }
 
 export const useRegisterTemplate = () => {
-  const { getValues, register, handleSubmit, watch, setValue, control } =
-    useForm<Register>({ resolver: zodResolver(registerSchema) })
+  const {
+    formState: { errors },
+    getValues,
+    register,
+    handleSubmit,
+    watch,
+    setValue,
+    control,
+  } = useForm<Register>({ resolver: zodResolver(registerSchema) })
   const [yearValue, monthValue] = getValues(["birthday.year", "birthday.month"])
   const isMonthEnable = Boolean(yearValue)
   const isDateEnable = Boolean(monthValue)
@@ -48,6 +55,7 @@ export const useRegisterTemplate = () => {
   return {
     control,
     dates,
+    errors,
     handleSubmit: handleSubmit(handleSubmitMain),
     isDateEnable,
     isMonthEnable,

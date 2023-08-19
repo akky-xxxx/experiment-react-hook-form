@@ -9,6 +9,7 @@ export const RegisterTemplate: FC = () => {
   const {
     control,
     dates,
+    errors,
     handleSubmit,
     isDateEnable,
     isMonthEnable,
@@ -19,6 +20,7 @@ export const RegisterTemplate: FC = () => {
     <RegisterView
       control={control}
       dates={dates}
+      errors={errors}
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       handleSubmit={handleSubmit}
       isDateEnable={isDateEnable}

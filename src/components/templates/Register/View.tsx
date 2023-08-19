@@ -1,14 +1,16 @@
 import { BirthdayFields } from "../../atoms/BirthdayFields"
+import { ErrorMessage } from "../../atoms/ErrorMessage"
 import { NameFields } from "../../atoms/NameFields"
 import { Text } from "../../atoms/Text"
 
 import type { Register } from "./types/Register"
 import type { FC, FormEventHandler } from "react"
-import type { UseFormRegister, Control } from "react-hook-form"
+import type { FieldErrors, UseFormRegister, Control } from "react-hook-form"
 
 type Props = {
   control: Control<Register>
   dates: number[]
+  errors: FieldErrors<Register>
   handleSubmit: FormEventHandler
   isDateEnable: boolean
   isMonthEnable: boolean
@@ -19,6 +21,7 @@ export const RegisterView: FC<Props> = (props) => {
   const {
     control,
     dates,
+    errors,
     handleSubmit,
     isDateEnable,
     isMonthEnable,
@@ -32,6 +35,7 @@ export const RegisterView: FC<Props> = (props) => {
 
         <div>
           <Text<Register> labelText="ID" name="id" register={register} />
+          <ErrorMessage errorMessage={errors.id?.message} />
         </div>
 
         <div>
@@ -41,6 +45,7 @@ export const RegisterView: FC<Props> = (props) => {
             register={register}
             type="password"
           />
+          <ErrorMessage errorMessage={errors.password?.message} />
         </div>
       </fieldset>
 
@@ -48,6 +53,10 @@ export const RegisterView: FC<Props> = (props) => {
         fieldMessage="Input your name."
         names={{ firstName: "name.firstName", lastName: "name.lastName" }}
         register={register}
+        errorMessages={{
+          firstName: errors.name?.firstName?.message,
+          lastName: errors.name?.lastName?.message,
+        }}
       />
 
       <BirthdayFields<Register>
@@ -56,6 +65,11 @@ export const RegisterView: FC<Props> = (props) => {
         fieldMessage="Select your birthday."
         isDateEnable={isDateEnable}
         isMonthEnable={isMonthEnable}
+        errorMessages={{
+          date: errors.birthday?.date?.message,
+          month: errors.birthday?.month?.message,
+          year: errors.birthday?.year?.message,
+        }}
         names={{
           date: "birthday.date",
           month: "birthday.month",

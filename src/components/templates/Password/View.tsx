@@ -23,7 +23,7 @@ export const PasswordView: FC<Props> = (props) => {
           register={register}
           type="password"
         />
-        <ErrorMessage errorMessage={errors.newPassword?.message} />
+        <ErrorMessage errorMessage={errors.currentPassword?.message} />
       </div>
 
       <div>
@@ -33,6 +33,7 @@ export const PasswordView: FC<Props> = (props) => {
           register={register}
           type="password"
         />
+        <ErrorMessage errorMessage={errors.newPassword?.message} />
       </div>
 
       <div>

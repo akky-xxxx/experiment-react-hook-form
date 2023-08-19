@@ -1,3 +1,4 @@
+import { ErrorMessage } from "../ErrorMessage"
 import { Select } from "../Select"
 
 import type { Control, FieldPath, FieldValues } from "react-hook-form"
@@ -13,6 +14,7 @@ type Props<
 > = {
   control: Control<F>
   dates: number[]
+  errorMessages: Partial<Record<"date" | "month" | "year", string>>
   fieldMessage: string
   isDateEnable: boolean
   isMonthEnable: boolean
@@ -23,6 +25,7 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
   const {
     control,
     dates,
+    errorMessages,
     fieldMessage,
     isDateEnable,
     isMonthEnable,
@@ -54,6 +57,9 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
         options={dates}
         placeholder="Date"
       />
+      <ErrorMessage errorMessage={errorMessages.year} />
+      <ErrorMessage errorMessage={errorMessages.month} />
+      <ErrorMessage errorMessage={errorMessages.date} />
     </fieldset>
   )
 }
