@@ -1,15 +1,14 @@
-import type { Register } from "../../templates/Register/types/Register"
-import type { FC, InputHTMLAttributes } from "react"
-import type { FieldPath, UseFormRegister } from "react-hook-form"
+import type { InputHTMLAttributes } from "react"
+import type { FieldPath, FieldValues, UseFormRegister } from "react-hook-form"
 
-type Props = {
-  name: FieldPath<Register>
+type Props<F extends FieldValues> = {
+  name: FieldPath<F>
   labelText: string
-  register: UseFormRegister<Register>
+  register: UseFormRegister<F>
   type?: InputHTMLAttributes<"HTMLAttributes">["type"]
 }
 
-export const Text: FC<Props> = (props) => {
+export const Text = <F extends FieldValues>(props: Props<F>) => {
   const { name, labelText, register, type } = props
 
   return (

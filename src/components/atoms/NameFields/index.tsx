@@ -1,23 +1,26 @@
 import { Text } from "../Text"
 
-import type { Register } from "../../templates/Register/types/Register"
-import type { FC } from "react"
-import type { UseFormRegister } from "react-hook-form"
+import type { FieldPath, FieldValues, UseFormRegister } from "react-hook-form"
 
-type Props = {
+type Props<F extends FieldValues, N extends FieldPath<F> = FieldPath<F>> = {
   fieldMessage: string
-  register: UseFormRegister<Register>
+  names: Record<"firstName" | "lastName", N>
+  register: UseFormRegister<F>
 }
 
-export const NameFields: FC<Props> = (props) => {
-  const { fieldMessage, register } = props
+export const NameFields = <F extends FieldValues>(props: Props<F>) => {
+  const {
+    fieldMessage,
+    names: { firstName, lastName },
+    register,
+  } = props
 
   return (
     <fieldset>
       <legend>{fieldMessage}</legend>
 
-      <Text labelText="First name" name="name.firstName" register={register} />
-      <Text labelText="Last name" name="name.lastName" register={register} />
+      <Text labelText="First name" name={firstName} register={register} />
+      <Text labelText="Last name" name={lastName} register={register} />
     </fieldset>
   )
 }
