@@ -41,16 +41,14 @@ export const useRegisterTemplate = () => {
     subscribeMonth(subscribeArguments)
   })
 
-  const year = watch("birthday.year", "")
-  const month = watch("birthday.month", "")
   const dates = useMemo(() => {
     const daysInMonth = getDaysInMonth(
       // eslint-disable-next-line @typescript-eslint/no-magic-numbers
-      new Date(Number(year), Number(month) - 1),
+      new Date(Number(yearValue), Number(monthValue) - 1),
     )
     // eslint-disable-next-line @typescript-eslint/no-magic-numbers
     return Array.from({ length: daysInMonth }, (_, index) => index + 1)
-  }, [year, month])
+  }, [yearValue, monthValue])
 
   return {
     control,
