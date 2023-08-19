@@ -3,10 +3,14 @@ import { useForm } from "react-hook-form"
 
 import { passwordChangeSchema } from "../../../../../shared/schemas/passwordChangeSchema"
 
+import type { PasswordView } from "../../View"
 import type { Password } from "../../types/Password"
+import type { ComponentProps } from "react"
 import type { SubmitHandler } from "react-hook-form"
 
-export const usePasswordTemplate = () => {
+type UsePasswordTemplateReturn = ComponentProps<typeof PasswordView>
+
+export const usePasswordTemplate = (): UsePasswordTemplateReturn => {
   const {
     register,
     handleSubmit,
@@ -32,6 +36,7 @@ export const usePasswordTemplate = () => {
 
   return {
     errors,
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     handleSubmit: handleSubmit(handleSubmitMain),
     register,
   }

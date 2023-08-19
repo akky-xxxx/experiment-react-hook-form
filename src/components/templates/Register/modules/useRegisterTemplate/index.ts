@@ -8,7 +8,9 @@ import { subscribeYear } from "./modules/subscribeYear"
 import { registerSchema } from "../../../../../shared/schemas/registerSchema"
 
 import type { SubscribeArguments } from "../../../../../shared/types/Subscribe"
+import type { RegisterView } from "../../View"
 import type { Register } from "../../types/Register"
+import type { ComponentProps } from "react"
 import type { SubmitHandler } from "react-hook-form"
 
 const handleSubmitMain: SubmitHandler<Register> = (data) => {
@@ -16,7 +18,9 @@ const handleSubmitMain: SubmitHandler<Register> = (data) => {
   console.log(data)
 }
 
-export const useRegisterTemplate = () => {
+type UseRegisterTemplateReturn = ComponentProps<typeof RegisterView>
+
+export const useRegisterTemplate = (): UseRegisterTemplateReturn => {
   const {
     formState: { errors },
     getValues,
@@ -54,6 +58,7 @@ export const useRegisterTemplate = () => {
     control,
     dates,
     errors,
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     handleSubmit: handleSubmit(handleSubmitMain),
     isDateEnable,
     isMonthEnable,
