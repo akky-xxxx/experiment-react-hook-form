@@ -1,3 +1,4 @@
+import { useNameFields } from "./modules/useNameFields"
 import { ErrorMessage } from "../ErrorMessage"
 import { Text } from "../Text"
 
@@ -6,27 +7,25 @@ import type {
   FieldValues,
   UseFormRegister,
   RegisterOptions,
+  Control,
 } from "react-hook-form"
 
 type Validators = "validateFirstName" | "validateLastName"
 type Names = "nameOfFirstName" | "nameOfLastName"
-type Errors = "errorOfFirstName" | "errorOfLastName"
 
 type Props<
   F extends FieldValues,
   N extends FieldPath<F> = FieldPath<F>,
-> = Partial<Record<Errors, string>> &
-  Record<Names, N> &
+> = Record<Names, N> &
   Record<Validators, RegisterOptions<F>["validate"]> & {
+    control: Control<F>
     fieldMessage: string
-    // TODO: register を controller に変えられるか試す
     register: UseFormRegister<F>
   }
 
 export const NameFields = <F extends FieldValues>(props: Props<F>) => {
   const {
-    errorOfFirstName,
-    errorOfLastName,
+    control,
     fieldMessage,
     nameOfFirstName,
     nameOfLastName,
@@ -34,6 +33,7 @@ export const NameFields = <F extends FieldValues>(props: Props<F>) => {
     validateFirstName,
     validateLastName,
   } = props
+  const { parsedErrors } = useNameFields({ control })
 
   return (
     <fieldset>
@@ -45,14 +45,14 @@ export const NameFields = <F extends FieldValues>(props: Props<F>) => {
         register={register}
         validate={validateFirstName}
       />
-      <ErrorMessage errorMessage={errorOfFirstName} />
+      <ErrorMessage errorMessage={parsedErrors.name?.firstName?.message} />
       <Text
         labelText="Last name"
         name={nameOfLastName}
         register={register}
         validate={validateLastName}
       />
-      <ErrorMessage errorMessage={errorOfLastName} />
+      <ErrorMessage errorMessage={parsedErrors.name?.lastName?.message} />
     </fieldset>
   )
 }

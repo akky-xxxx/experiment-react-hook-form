@@ -46,8 +46,7 @@ export const RegisterView: FC<Props> = (props) => {
       </fieldset>
 
       <NameFields
-        errorOfFirstName={errors.name?.firstName?.message}
-        errorOfLastName={errors.name?.lastName?.message}
+        control={control}
         fieldMessage="Input your name."
         nameOfFirstName="name.firstName"
         nameOfLastName="name.lastName"
