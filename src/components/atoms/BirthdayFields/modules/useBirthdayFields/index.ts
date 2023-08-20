@@ -3,6 +3,8 @@ import { useMemo } from "react"
 import { useFormState, useWatch } from "react-hook-form"
 import { z } from "zod"
 
+import { errorMessageSchema } from "../../../../../shared/schemas/errorMessageSchema"
+
 import type { Control, FieldPath, FieldValues } from "react-hook-form"
 
 type Names = "nameOfMonth" | "nameOfYear"
@@ -22,18 +24,13 @@ export const useBirthdayFields = <FormValues extends FieldValues>(
     name: [nameOfYear, nameOfMonth],
   })
   const { errors } = useFormState({ control })
-  const errorProperty = z
-    .object({
-      message: z.string().optional(),
-    })
-    .optional()
   const parsedErrors = z
     .object({
       birthday: z
         .object({
-          date: errorProperty,
-          month: errorProperty,
-          year: errorProperty,
+          date: errorMessageSchema,
+          month: errorMessageSchema,
+          year: errorMessageSchema,
         })
         .optional(),
     })
