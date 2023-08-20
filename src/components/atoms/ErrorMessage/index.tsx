@@ -4,6 +4,7 @@ type Props = {
   errorMessage?: string
 }
 
+// TODO: ErrorText に変えて react hook form の ErrorMessage をそのまま使えるようにする
 export const ErrorMessage: FC<Props> = (props) => {
   const { errorMessage } = props
 

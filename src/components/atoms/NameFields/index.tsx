@@ -19,6 +19,7 @@ type Props<
   Record<Names, N> &
   Record<Validators, RegisterOptions<F>["validate"]> & {
     fieldMessage: string
+    // TODO: register を controller に変えられるか試す
     register: UseFormRegister<F>
   }
 
