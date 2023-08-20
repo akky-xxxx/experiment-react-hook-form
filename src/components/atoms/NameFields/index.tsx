@@ -8,12 +8,12 @@ import type {
   RegisterOptions,
 } from "react-hook-form"
 
-type validators = "validateFirstName" | "validateLastName"
+type Validators = "validateFirstName" | "validateLastName"
 
 type Props<
   F extends FieldValues,
   N extends FieldPath<F> = FieldPath<F>,
-> = Record<validators, RegisterOptions<F>["validate"]> & {
+> = Record<Validators, RegisterOptions<F>["validate"]> & {
   fieldMessage: string
   errorMessages: Partial<Record<"firstName" | "lastName", string>>
   names: Record<"firstName" | "lastName", N>

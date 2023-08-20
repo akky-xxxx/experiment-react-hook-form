@@ -13,7 +13,7 @@ const Years = Array.from({ length: 100 }, (_, index) => index + 1950)
 const Month = Array.from({ length: 12 }, (_, index) => index + 1)
 /* eslint-enable @typescript-eslint/no-magic-numbers */
 
-type validators =
+type Validators =
   | "validateBirthdayDate"
   | "validateBirthdayMonth"
   | "validateBirthdayYear"
@@ -21,7 +21,7 @@ type validators =
 type Props<
   F extends FieldValues = FieldValues,
   N extends FieldPath<F> = FieldPath<F>,
-> = Record<validators, RegisterOptions<F>["validate"]> & {
+> = Record<Validators, RegisterOptions<F>["validate"]> & {
   control: Control<F>
   dates: number[]
   errorMessages: Partial<Record<"date" | "month" | "year", string>>
