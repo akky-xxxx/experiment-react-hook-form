@@ -1,5 +1,3 @@
-import { useWatch } from "react-hook-form"
-
 import { useBirthdayFields } from "./modules/useBirthdayFields"
 import { ErrorMessage } from "../ErrorMessage"
 import { Select } from "../Select"
@@ -21,13 +19,11 @@ type Validators =
   | "validateBirthdayMonth"
   | "validateBirthdayYear"
 type Names = "nameOfDate" | "nameOfMonth" | "nameOfYear"
-type ErrorMessages = "errorOfDate" | "errorOfMonth" | "errorOfYear"
 
 type Props<
   F extends FieldValues = FieldValues,
   N extends FieldPath<F> = FieldPath<F>,
-> = Partial<Record<ErrorMessages, string>> &
-  Record<Names, N> &
+> = Record<Names, N> &
   Record<Validators, RegisterOptions<F>["validate"]> & {
     control: Control<F>
     fieldMessage: string
@@ -36,9 +32,6 @@ type Props<
 export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
   const {
     control,
-    errorOfDate,
-    errorOfMonth,
-    errorOfYear,
     fieldMessage,
     nameOfDate,
     nameOfMonth,
@@ -47,14 +40,8 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
     validateBirthdayMonth,
     validateBirthdayYear,
   } = props
-  const [yearValue, monthValue] = useWatch({
-    control,
-    name: [nameOfYear, nameOfMonth],
-  })
-  const { dates, isDateEnable, isMonthEnable } = useBirthdayFields(
-    yearValue,
-    monthValue,
-  )
+  const { dates, isDateEnable, isMonthEnable, parsedErrors } =
+    useBirthdayFields({ control, nameOfMonth, nameOfYear })
 
   return (
     <fieldset>
@@ -90,9 +77,9 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
           validate: validateBirthdayYear,
         }}
       />
-      <ErrorMessage errorMessage={errorOfYear} />
-      <ErrorMessage errorMessage={errorOfMonth} />
-      <ErrorMessage errorMessage={errorOfDate} />
+      <ErrorMessage errorMessage={parsedErrors.birthday?.year?.message} />
+      <ErrorMessage errorMessage={parsedErrors.birthday?.month?.message} />
+      <ErrorMessage errorMessage={parsedErrors.birthday?.date?.message} />
     </fieldset>
   )
 }

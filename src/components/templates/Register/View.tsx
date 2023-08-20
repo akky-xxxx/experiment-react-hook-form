@@ -58,9 +58,6 @@ export const RegisterView: FC<Props> = (props) => {
 
       <BirthdayFields<Register>
         control={control}
-        errorOfDate={errors.birthday?.date?.message}
-        errorOfMonth={errors.birthday?.month?.message}
-        errorOfYear={errors.birthday?.year?.message}
         fieldMessage="Select your birthday."
         nameOfDate="birthday.date"
         nameOfMonth="birthday.month"
