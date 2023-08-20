@@ -54,7 +54,7 @@ export const BirthdayFields = <FormValues extends FieldValues>(
         options={Years}
         placeholder="Year"
         rules={{
-          validate: validateBirthdayDate,
+          validate: validateBirthdayYear,
         }}
       />
       /
@@ -76,7 +76,7 @@ export const BirthdayFields = <FormValues extends FieldValues>(
         options={dates}
         placeholder="Date"
         rules={{
-          validate: validateBirthdayYear,
+          validate: validateBirthdayDate,
         }}
       />
       <ErrorMessage errorMessage={parsedErrors.birthday?.year?.message} />
