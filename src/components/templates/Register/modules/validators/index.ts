@@ -1,4 +1,4 @@
-import { registerSchema } from "../../../../../shared/schemas/registerSchema"
+import { registerSchema } from "./schemas/registerSchema"
 import { validateBySchema } from "../../../../../shared/utils/validateBySchema"
 
 import type { Validator } from "../../../../../shared/types/Validator"

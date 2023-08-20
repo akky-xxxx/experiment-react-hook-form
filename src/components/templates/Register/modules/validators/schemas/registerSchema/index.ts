@@ -1,8 +1,8 @@
 import { z } from "zod"
 
-import { passwordSchema } from "../passwordSchema"
+import { passwordSchema } from "../../../../../../../shared/schemas/passwordSchema"
 
-import type { Register } from "../../../components/templates/Register/types/Register"
+import type { Register } from "../../../../types/Register"
 import type { ZodString, ZodEffects } from "zod"
 
 type NameSchemaType = Record<keyof Register["name"], ZodString>

@@ -1,4 +1,4 @@
-import { passwordChangeSchema } from "../../../../../shared/schemas/passwordChangeSchema"
+import { passwordChangeSchema } from "./schemas/passwordChangeSchema"
 import { validateBySchema } from "../../../../../shared/utils/validateBySchema"
 
 import type { Validator } from "../../../../../shared/types/Validator"
