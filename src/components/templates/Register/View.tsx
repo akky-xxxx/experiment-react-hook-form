@@ -10,20 +10,13 @@ import type { FieldErrors, UseFormRegister, Control } from "react-hook-form"
 
 type Props = {
   control: Control<Register>
-  dates: number[]
   errors: FieldErrors<Register>
   handleSubmit: FormEventHandler
   register: UseFormRegister<Register>
 }
 
 export const RegisterView: FC<Props> = (props) => {
-  const {
-    control,
-    dates,
-    errors,
-    handleSubmit,
-    register,
-  } = props
+  const { control, errors, handleSubmit, register } = props
 
   return (
     <form onSubmit={handleSubmit}>
@@ -65,7 +58,6 @@ export const RegisterView: FC<Props> = (props) => {
 
       <BirthdayFields<Register>
         control={control}
-        dates={dates}
         errorOfDate={errors.birthday?.date?.message}
         errorOfMonth={errors.birthday?.month?.message}
         errorOfYear={errors.birthday?.year?.message}

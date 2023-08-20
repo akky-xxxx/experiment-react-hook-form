@@ -1,5 +1,6 @@
 import { useWatch } from "react-hook-form"
 
+import { useBirthdayFields } from "./modules/useBirthdayFields"
 import { ErrorMessage } from "../ErrorMessage"
 import { Select } from "../Select"
 
@@ -29,14 +30,12 @@ type Props<
   Record<Names, N> &
   Record<Validators, RegisterOptions<F>["validate"]> & {
     control: Control<F>
-    dates: number[]
     fieldMessage: string
   }
 
 export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
   const {
     control,
-    dates,
     errorOfDate,
     errorOfMonth,
     errorOfYear,
@@ -48,9 +47,14 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
     validateBirthdayMonth,
     validateBirthdayYear,
   } = props
-  const [yearValue, monthValue] = useWatch({ control, name: [nameOfYear, nameOfMonth] })
-  const isMonthEnable = Boolean(yearValue)
-  const isDateEnable = Boolean(monthValue)
+  const [yearValue, monthValue] = useWatch({
+    control,
+    name: [nameOfYear, nameOfMonth],
+  })
+  const { dates, isDateEnable, isMonthEnable } = useBirthdayFields(
+    yearValue,
+    monthValue,
+  )
 
   return (
     <fieldset>
