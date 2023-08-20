@@ -29,8 +29,6 @@ export const useRegisterTemplate = (): UseRegisterTemplateReturn => {
     control,
   } = useResolvedForm<Register>()
   const [yearValue, monthValue] = getValues(["birthday.year", "birthday.month"])
-  const isMonthEnable = Boolean(yearValue)
-  const isDateEnable = Boolean(monthValue)
 
   watch((formState, { name, type }) => {
     const subscribeArguments: SubscribeArguments<Register> = {
@@ -58,8 +56,6 @@ export const useRegisterTemplate = (): UseRegisterTemplateReturn => {
     errors,
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     handleSubmit: handleSubmit(handleSubmitMain),
-    isDateEnable,
-    isMonthEnable,
     register,
   }
 }

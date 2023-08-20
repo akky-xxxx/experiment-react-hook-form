@@ -13,8 +13,6 @@ type Props = {
   dates: number[]
   errors: FieldErrors<Register>
   handleSubmit: FormEventHandler
-  isDateEnable: boolean
-  isMonthEnable: boolean
   register: UseFormRegister<Register>
 }
 
@@ -24,8 +22,6 @@ export const RegisterView: FC<Props> = (props) => {
     dates,
     errors,
     handleSubmit,
-    isDateEnable,
-    isMonthEnable,
     register,
   } = props
 
@@ -74,8 +70,6 @@ export const RegisterView: FC<Props> = (props) => {
         errorOfMonth={errors.birthday?.month?.message}
         errorOfYear={errors.birthday?.year?.message}
         fieldMessage="Select your birthday."
-        isDateEnable={isDateEnable}
-        isMonthEnable={isMonthEnable}
         nameOfDate="birthday.date"
         nameOfMonth="birthday.month"
         nameOfYear="birthday.year"

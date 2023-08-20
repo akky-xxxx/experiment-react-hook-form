@@ -1,3 +1,5 @@
+import { useWatch } from "react-hook-form"
+
 import { ErrorMessage } from "../ErrorMessage"
 import { Select } from "../Select"
 
@@ -29,8 +31,6 @@ type Props<
     control: Control<F>
     dates: number[]
     fieldMessage: string
-    isDateEnable: boolean
-    isMonthEnable: boolean
   }
 
 export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
@@ -41,8 +41,6 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
     errorOfMonth,
     errorOfYear,
     fieldMessage,
-    isDateEnable,
-    isMonthEnable,
     nameOfDate,
     nameOfMonth,
     nameOfYear,
@@ -50,6 +48,9 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
     validateBirthdayMonth,
     validateBirthdayYear,
   } = props
+  const [yearValue, monthValue] = useWatch({ control, name: [nameOfYear, nameOfMonth] })
+  const isMonthEnable = Boolean(yearValue)
+  const isDateEnable = Boolean(monthValue)
 
   return (
     <fieldset>
