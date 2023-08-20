@@ -7,17 +7,17 @@ import type {
 } from "react-hook-form"
 
 type Props<
-  F extends FieldValues,
-  N extends FieldPath<F> = FieldPath<F>,
-> = Partial<RegisterOptions<F, N>> & {
-  name: N
+  FormValues extends FieldValues,
+  FormNames extends FieldPath<FormValues> = FieldPath<FormValues>,
+> = Partial<RegisterOptions<FormValues, FormNames>> & {
+  name: FormNames
   labelText: string
-  register: UseFormRegister<F>
+  register: UseFormRegister<FormValues>
   type?: InputHTMLAttributes<"HTMLAttributes">["type"]
-  validate?: RegisterOptions<F>["validate"]
+  validate?: RegisterOptions<FormValues>["validate"]
 }
 
-export const Text = <F extends FieldValues>(props: Props<F>) => {
+export const Text = <FormValues extends FieldValues>(props: Props<FormValues>) => {
   const { name, labelText, register, type, ...registerOptions } = props
 
   return (

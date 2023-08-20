@@ -14,16 +14,16 @@ type Validators = "validateFirstName" | "validateLastName"
 type Names = "nameOfFirstName" | "nameOfLastName"
 
 type Props<
-  F extends FieldValues,
-  N extends FieldPath<F> = FieldPath<F>,
-> = Record<Names, N> &
-  Record<Validators, RegisterOptions<F>["validate"]> & {
-    control: Control<F>
+  FormValues extends FieldValues,
+  FormNames extends FieldPath<FormValues> = FieldPath<FormValues>,
+> = Record<Names, FormNames> &
+  Record<Validators, RegisterOptions<FormValues>["validate"]> & {
+    control: Control<FormValues>
     fieldMessage: string
-    register: UseFormRegister<F>
+    register: UseFormRegister<FormValues>
   }
 
-export const NameFields = <F extends FieldValues>(props: Props<F>) => {
+export const NameFields = <FormValues extends FieldValues>(props: Props<FormValues>) => {
   const {
     control,
     fieldMessage,

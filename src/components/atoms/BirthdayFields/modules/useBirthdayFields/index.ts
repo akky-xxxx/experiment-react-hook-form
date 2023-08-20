@@ -7,13 +7,13 @@ import type { Control, FieldPath, FieldValues } from "react-hook-form"
 
 type Names = "nameOfMonth" | "nameOfYear"
 type Props<
-  F extends FieldValues = FieldValues,
-  N extends FieldPath<F> = FieldPath<F>,
-> = Record<Names, N> & {
-  control: Control<F>
+  FormValues extends FieldValues = FieldValues,
+  FormNames extends FieldPath<FormValues> = FieldPath<FormValues>,
+> = Record<Names, FormNames> & {
+  control: Control<FormValues>
 }
 
-export const useBirthdayFields = <F extends FieldValues>(props: Props<F>) => {
+export const useBirthdayFields = <FormValues extends FieldValues>(props: Props<FormValues>) => {
   const { control, nameOfMonth, nameOfYear } = props
   const [yearValue, monthValue] = useWatch({
     control,

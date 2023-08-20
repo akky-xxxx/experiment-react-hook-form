@@ -3,11 +3,11 @@ import { z } from "zod"
 
 import type { Control, FieldValues } from "react-hook-form"
 
-type Props<F extends FieldValues> = {
-  control: Control<F>
+type Props<FormValues extends FieldValues> = {
+  control: Control<FormValues>
 }
 
-export const useNameFields = <F extends FieldValues>(props: Props<F>) => {
+export const useNameFields = <FormValues extends FieldValues>(props: Props<FormValues>) => {
   const { control } = props
   const { errors } = useFormState({ control })
   // TODO: errorProperty を共通 schema として定義する

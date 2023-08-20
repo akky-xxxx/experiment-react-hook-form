@@ -21,15 +21,15 @@ type Validators =
 type Names = "nameOfDate" | "nameOfMonth" | "nameOfYear"
 
 type Props<
-  F extends FieldValues = FieldValues,
-  N extends FieldPath<F> = FieldPath<F>,
-> = Record<Names, N> &
-  Record<Validators, RegisterOptions<F>["validate"]> & {
-    control: Control<F>
+  FormValues extends FieldValues = FieldValues,
+  FormNames extends FieldPath<FormValues> = FieldPath<FormValues>,
+> = Record<Names, FormNames> &
+  Record<Validators, RegisterOptions<FormValues>["validate"]> & {
+    control: Control<FormValues>
     fieldMessage: string
   }
 
-export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
+export const BirthdayFields = <FormValues extends FieldValues>(props: Props<FormValues>) => {
   const {
     control,
     fieldMessage,
