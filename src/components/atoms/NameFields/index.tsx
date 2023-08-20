@@ -9,22 +9,26 @@ import type {
 } from "react-hook-form"
 
 type Validators = "validateFirstName" | "validateLastName"
+type Names = "nameOfFirstName" | "nameOfLastName"
+type Errors = "errorOfFirstName" | "errorOfLastName"
 
 type Props<
   F extends FieldValues,
   N extends FieldPath<F> = FieldPath<F>,
-> = Record<Validators, RegisterOptions<F>["validate"]> & {
-  fieldMessage: string
-  errorMessages: Partial<Record<"firstName" | "lastName", string>>
-  names: Record<"firstName" | "lastName", N>
-  register: UseFormRegister<F>
-}
+> = Partial<Record<Errors, string>> &
+  Record<Names, N> &
+  Record<Validators, RegisterOptions<F>["validate"]> & {
+    fieldMessage: string
+    register: UseFormRegister<F>
+  }
 
 export const NameFields = <F extends FieldValues>(props: Props<F>) => {
   const {
-    errorMessages,
+    errorOfFirstName,
+    errorOfLastName,
     fieldMessage,
-    names: { firstName, lastName },
+    nameOfFirstName,
+    nameOfLastName,
     register,
     validateFirstName,
     validateLastName,
@@ -36,18 +40,18 @@ export const NameFields = <F extends FieldValues>(props: Props<F>) => {
 
       <Text
         labelText="First name"
-        name={firstName}
+        name={nameOfFirstName}
         register={register}
         validate={validateFirstName}
       />
-      <ErrorMessage errorMessage={errorMessages.firstName} />
+      <ErrorMessage errorMessage={errorOfFirstName} />
       <Text
         labelText="Last name"
-        name={lastName}
+        name={nameOfLastName}
         register={register}
         validate={validateLastName}
       />
-      <ErrorMessage errorMessage={errorMessages.lastName} />
+      <ErrorMessage errorMessage={errorOfLastName} />
     </fieldset>
   )
 }

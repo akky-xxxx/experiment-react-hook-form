@@ -57,15 +57,14 @@ export const RegisterView: FC<Props> = (props) => {
       </fieldset>
 
       <NameFields
+        errorOfFirstName={errors.name?.firstName?.message}
+        errorOfLastName={errors.name?.lastName?.message}
         fieldMessage="Input your name."
-        names={{ firstName: "name.firstName", lastName: "name.lastName" }}
+        nameOfFirstName="name.firstName"
+        nameOfLastName="name.lastName"
         register={register}
         validateFirstName={validators.validateFirstName}
         validateLastName={validators.validateLastName}
-        errorMessages={{
-          firstName: errors.name?.firstName?.message,
-          lastName: errors.name?.lastName?.message,
-        }}
       />
 
       <BirthdayFields<Register>
