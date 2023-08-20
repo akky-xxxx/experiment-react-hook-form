@@ -70,22 +70,18 @@ export const RegisterView: FC<Props> = (props) => {
       <BirthdayFields<Register>
         control={control}
         dates={dates}
+        errorOfDate={errors.birthday?.date?.message}
+        errorOfMonth={errors.birthday?.month?.message}
+        errorOfYear={errors.birthday?.year?.message}
         fieldMessage="Select your birthday."
         isDateEnable={isDateEnable}
         isMonthEnable={isMonthEnable}
+        nameOfDate="birthday.date"
+        nameOfMonth="birthday.month"
+        nameOfYear="birthday.year"
         validateBirthdayDate={validators.validateBirthdayDate}
         validateBirthdayMonth={validators.validateBirthdayMonth}
         validateBirthdayYear={validators.validateBirthdayYear}
-        errorMessages={{
-          date: errors.birthday?.date?.message,
-          month: errors.birthday?.month?.message,
-          year: errors.birthday?.year?.message,
-        }}
-        names={{
-          date: "birthday.date",
-          month: "birthday.month",
-          year: "birthday.year",
-        }}
       />
 
       <button type="submit">Confirm</button>

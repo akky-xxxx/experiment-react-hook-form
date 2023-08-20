@@ -17,29 +17,35 @@ type Validators =
   | "validateBirthdayDate"
   | "validateBirthdayMonth"
   | "validateBirthdayYear"
+type Names = "nameOfDate" | "nameOfMonth" | "nameOfYear"
+type ErrorMessages = "errorOfDate" | "errorOfMonth" | "errorOfYear"
 
 type Props<
   F extends FieldValues = FieldValues,
   N extends FieldPath<F> = FieldPath<F>,
-> = Record<Validators, RegisterOptions<F>["validate"]> & {
-  control: Control<F>
-  dates: number[]
-  errorMessages: Partial<Record<"date" | "month" | "year", string>>
-  fieldMessage: string
-  isDateEnable: boolean
-  isMonthEnable: boolean
-  names: Record<"date" | "month" | "year", N>
-}
+> = Partial<Record<ErrorMessages, string>> &
+  Record<Names, N> &
+  Record<Validators, RegisterOptions<F>["validate"]> & {
+    control: Control<F>
+    dates: number[]
+    fieldMessage: string
+    isDateEnable: boolean
+    isMonthEnable: boolean
+  }
 
 export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
   const {
     control,
     dates,
-    errorMessages,
+    errorOfDate,
+    errorOfMonth,
+    errorOfYear,
     fieldMessage,
     isDateEnable,
     isMonthEnable,
-    names: { date, month, year },
+    nameOfDate,
+    nameOfMonth,
+    nameOfYear,
     validateBirthdayDate,
     validateBirthdayMonth,
     validateBirthdayYear,
@@ -50,7 +56,7 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
       <legend>{fieldMessage}</legend>
       <Select
         control={control}
-        name={year}
+        name={nameOfYear}
         options={Years}
         placeholder="Year"
         rules={{
@@ -61,7 +67,7 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
       <Select
         control={control}
         isDisabled={!isMonthEnable}
-        name={month}
+        name={nameOfMonth}
         options={Month}
         placeholder="Month"
         rules={{
@@ -72,16 +78,16 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
       <Select
         control={control}
         isDisabled={!isDateEnable}
-        name={date}
+        name={nameOfDate}
         options={dates}
         placeholder="Date"
         rules={{
           validate: validateBirthdayYear,
         }}
       />
-      <ErrorMessage errorMessage={errorMessages.year} />
-      <ErrorMessage errorMessage={errorMessages.month} />
-      <ErrorMessage errorMessage={errorMessages.date} />
+      <ErrorMessage errorMessage={errorOfYear} />
+      <ErrorMessage errorMessage={errorOfMonth} />
+      <ErrorMessage errorMessage={errorOfDate} />
     </fieldset>
   )
 }
