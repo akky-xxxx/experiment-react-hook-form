@@ -8,10 +8,15 @@ const validateConfirmationPassword: Validator<Password> = (
   value,
   formValues,
 ) => {
-  if (formValues.newPassword !== value)
-    return 'Diff password between "New password" and "Confirmation"'
+  const isValidAsSchema = validateBySchema(
+    passwordChangeSchema.confirmationPassword,
+  )(value)
+  if (typeof isValidAsSchema === "string") return isValidAsSchema
 
-  return validateBySchema(passwordChangeSchema.confirmationPassword)(value)
+  return (
+    formValues.newPassword === value ||
+    'Diff password between "New password" and "Confirmation"'
+  )
 }
 
 const validateCurrentPassword: Validator<Password> = validateBySchema(
@@ -19,9 +24,15 @@ const validateCurrentPassword: Validator<Password> = validateBySchema(
 )
 
 const validateNewPassword: Validator<Password> = (value, formValues) => {
-  if (formValues.currentPassword === value)
-    return 'Same password between "Current password" and "New password"'
-  return validateBySchema(passwordChangeSchema.newPassword)(value)
+  const isValidAsSchema = validateBySchema(passwordChangeSchema.newPassword)(
+    value,
+  )
+  if (typeof isValidAsSchema === "string") return isValidAsSchema
+
+  return (
+    formValues.currentPassword !== value ||
+    'Same password between "Current password" and "New password"'
+  )
 }
 
 export const validators: Record<string, Validator<Password>> = {
