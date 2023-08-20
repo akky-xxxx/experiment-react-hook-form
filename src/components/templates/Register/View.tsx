@@ -1,3 +1,4 @@
+import { validators } from "./modules/validators"
 import { BirthdayFields } from "../../atoms/BirthdayFields"
 import { ErrorMessage } from "../../atoms/ErrorMessage"
 import { NameFields } from "../../atoms/NameFields"
@@ -34,7 +35,12 @@ export const RegisterView: FC<Props> = (props) => {
         <legend>Input ID and Password.</legend>
 
         <div>
-          <Text<Register> labelText="ID" name="id" register={register} />
+          <Text<Register>
+            labelText="ID"
+            name="id"
+            register={register}
+            validate={validators.validateId}
+          />
           <ErrorMessage errorMessage={errors.id?.message} />
         </div>
 
@@ -44,6 +50,7 @@ export const RegisterView: FC<Props> = (props) => {
             name="password"
             register={register}
             type="password"
+            validate={validators.validatePassword}
           />
           <ErrorMessage errorMessage={errors.password?.message} />
         </div>
@@ -53,6 +60,8 @@ export const RegisterView: FC<Props> = (props) => {
         fieldMessage="Input your name."
         names={{ firstName: "name.firstName", lastName: "name.lastName" }}
         register={register}
+        validateFirstName={validators.validateFirstName}
+        validateLastName={validators.validateLastName}
         errorMessages={{
           firstName: errors.name?.firstName?.message,
           lastName: errors.name?.lastName?.message,
@@ -65,6 +74,9 @@ export const RegisterView: FC<Props> = (props) => {
         fieldMessage="Select your birthday."
         isDateEnable={isDateEnable}
         isMonthEnable={isMonthEnable}
+        validateBirthdayDate={validators.validateBirthdayDate}
+        validateBirthdayMonth={validators.validateBirthdayMonth}
+        validateBirthdayYear={validators.validateBirthdayYear}
         errorMessages={{
           date: errors.birthday?.date?.message,
           month: errors.birthday?.month?.message,

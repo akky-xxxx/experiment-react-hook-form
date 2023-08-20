@@ -1,17 +1,27 @@
 import { ErrorMessage } from "../ErrorMessage"
 import { Select } from "../Select"
 
-import type { Control, FieldPath, FieldValues } from "react-hook-form"
+import type {
+  RegisterOptions,
+  Control,
+  FieldPath,
+  FieldValues,
+} from "react-hook-form"
 
 /* eslint-disable @typescript-eslint/no-magic-numbers */
 const Years = Array.from({ length: 100 }, (_, index) => index + 1950)
 const Month = Array.from({ length: 12 }, (_, index) => index + 1)
 /* eslint-enable @typescript-eslint/no-magic-numbers */
 
+type validators =
+  | "validateBirthdayDate"
+  | "validateBirthdayMonth"
+  | "validateBirthdayYear"
+
 type Props<
   F extends FieldValues = FieldValues,
   N extends FieldPath<F> = FieldPath<F>,
-> = {
+> = Record<validators, RegisterOptions<F>["validate"]> & {
   control: Control<F>
   dates: number[]
   errorMessages: Partial<Record<"date" | "month" | "year", string>>
@@ -30,6 +40,9 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
     isDateEnable,
     isMonthEnable,
     names: { date, month, year },
+    validateBirthdayDate,
+    validateBirthdayMonth,
+    validateBirthdayYear,
   } = props
 
   return (
@@ -40,6 +53,9 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
         name={year}
         options={Years}
         placeholder="Year"
+        rules={{
+          validate: validateBirthdayDate,
+        }}
       />
       /
       <Select
@@ -48,6 +64,9 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
         name={month}
         options={Month}
         placeholder="Month"
+        rules={{
+          validate: validateBirthdayMonth,
+        }}
       />
       /
       <Select
@@ -56,6 +75,9 @@ export const BirthdayFields = <F extends FieldValues>(props: Props<F>) => {
         name={date}
         options={dates}
         placeholder="Date"
+        rules={{
+          validate: validateBirthdayYear,
+        }}
       />
       <ErrorMessage errorMessage={errorMessages.year} />
       <ErrorMessage errorMessage={errorMessages.month} />
