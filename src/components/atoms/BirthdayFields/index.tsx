@@ -29,7 +29,9 @@ type Props<
     fieldMessage: string
   }
 
-export const BirthdayFields = <FormValues extends FieldValues>(props: Props<FormValues>) => {
+export const BirthdayFields = <FormValues extends FieldValues>(
+  props: Props<FormValues>,
+) => {
   const {
     control,
     fieldMessage,

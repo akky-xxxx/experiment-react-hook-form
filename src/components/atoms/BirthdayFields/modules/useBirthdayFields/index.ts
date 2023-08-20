@@ -13,7 +13,9 @@ type Props<
   control: Control<FormValues>
 }
 
-export const useBirthdayFields = <FormValues extends FieldValues>(props: Props<FormValues>) => {
+export const useBirthdayFields = <FormValues extends FieldValues>(
+  props: Props<FormValues>,
+) => {
   const { control, nameOfMonth, nameOfYear } = props
   const [yearValue, monthValue] = useWatch({
     control,

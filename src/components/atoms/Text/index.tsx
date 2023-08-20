@@ -17,7 +17,9 @@ type Props<
   validate?: RegisterOptions<FormValues>["validate"]
 }
 
-export const Text = <FormValues extends FieldValues>(props: Props<FormValues>) => {
+export const Text = <FormValues extends FieldValues>(
+  props: Props<FormValues>,
+) => {
   const { name, labelText, register, type, ...registerOptions } = props
 
   return (

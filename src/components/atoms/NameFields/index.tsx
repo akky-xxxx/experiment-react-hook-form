@@ -23,7 +23,9 @@ type Props<
     register: UseFormRegister<FormValues>
   }
 
-export const NameFields = <FormValues extends FieldValues>(props: Props<FormValues>) => {
+export const NameFields = <FormValues extends FieldValues>(
+  props: Props<FormValues>,
+) => {
   const {
     control,
     fieldMessage,
