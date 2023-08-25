@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form"
 
 import type { FieldValues, UseFormProps } from "react-hook-form"
 
-// resolver を使うと要素ごとの validate が比活性となるため
+// resolver を使うと要素ごとの validate が非活性となるため
 type Props<F extends FieldValues, C> = Omit<UseFormProps<F, C>, "resolver">
 
 export const useResolvedForm = <
