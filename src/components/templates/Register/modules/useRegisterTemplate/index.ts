@@ -1,6 +1,6 @@
 import { subscribeMonth } from "./modules/subscribeMonth"
 import { subscribeYear } from "./modules/subscribeYear"
-import { useResolvedForm } from "../../../../../shared/utils/useResolvedForm"
+import { useNoResolverForm } from "../../../../../shared/utils/useNoResolverForm"
 
 import type { SubscribeArguments } from "../../../../../shared/types/Subscribe"
 import type { RegisterView } from "../../View"
@@ -23,7 +23,7 @@ export const useRegisterTemplate = (): UseRegisterTemplateReturn => {
     watch,
     setValue,
     control,
-  } = useResolvedForm<Register>()
+  } = useNoResolverForm<Register>()
 
   watch((formState, { name, type }) => {
     const subscribeArguments: SubscribeArguments<Register> = {

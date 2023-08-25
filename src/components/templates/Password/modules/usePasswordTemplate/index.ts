@@ -1,4 +1,4 @@
-import { useResolvedForm } from "../../../../../shared/utils/useResolvedForm"
+import { useNoResolverForm } from "../../../../../shared/utils/useNoResolverForm"
 
 import type { PasswordView } from "../../View"
 import type { Password } from "../../types/Password"
@@ -17,7 +17,7 @@ export const usePasswordTemplate = (): UsePasswordTemplateReturn => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useResolvedForm<Password>()
+  } = useNoResolverForm<Password>()
 
   return {
     errors,
