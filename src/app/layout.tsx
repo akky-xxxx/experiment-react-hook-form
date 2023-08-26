@@ -28,6 +28,9 @@ const RootLayout: FC<{ children: ReactNode }> = (props) => {
             <li>
               <Link href="/pet-list">Pet list</Link>
             </li>
+            <li>
+              <Link href="/trigger">Trigger</Link>
+            </li>
           </ul>
         </nav>
         <div>{children}</div>
