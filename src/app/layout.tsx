@@ -25,6 +25,9 @@ const RootLayout: FC<{ children: ReactNode }> = (props) => {
             <li>
               <Link href="/mypage/password">Password</Link>
             </li>
+            <li>
+              <Link href="/pet-list">Pet list</Link>
+            </li>
           </ul>
         </nav>
         <div>{children}</div>
