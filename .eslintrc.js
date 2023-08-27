@@ -2,7 +2,7 @@ module.exports = {
   env: {
     browser: true,
   },
-  extends: ["strict-check/react-max"],
+  extends: ["strict-check/react-max", "./config/eslint/react/"],
   ignorePatterns: ["**/coverage/**", "**/.next/**"],
   overrides: [
     {
